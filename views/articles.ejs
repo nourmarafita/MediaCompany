@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
+</head>
+<body>
+    <a href="/add/article">Add</a>
+
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>ImgUrl</th>
+            <% if (id == 2) { %>
+                <th>Status</th>
+            <% } %>
+            <th>Created By</th>
+            <th>Category</th>
+            <th>Created At</th>
+        </tr>
+        
+        <% result.forEach(el => { %>
+            <% const {title, content, imgUrl, pendingStatus, User, Tag, createdAt, formatPendingStatus, dateFormat} = el%> 
+            <tr>
+                <td><%= title %></td>
+                <td><%= content %></td>
+                <td>
+                    <img src="<%= imgUrl %>" alt="img">
+                </td>
+                <% if (id == 2) { %>
+                    <td><%= formatPendingStatus %></td>
+                <% } %>
+                <td><%= User.fullName %></td>
+                <td><%= Tag.name %></td>
+                <td><%= dateFormat %></td>
+            </tr>
+        <% }) %>
+    </table>
+    
+</body>
+</html>

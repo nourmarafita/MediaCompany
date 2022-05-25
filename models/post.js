@@ -1,4 +1,5 @@
 'use strict';
+const formatDate = require('../helpers/formatdate')
 const {
   Model
 } = require('sequelize');
@@ -10,7 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Post.belongsTo(models.User, {foreignKey: "UserId"})
+      Post.belongsTo(models.Tag, {foreignKey: "TagId"})
+    }
+    
+    get formatPendingStatus () {
+      if(this.pendingStatus === 1) {
+        return 'Pending'
+      }else if (this.pendingStatus === 2) {
+        return 'Approved'
+      }else {
+        return 'Rejected'
+      }
+    }
+
+    get dateFormat () {
+      return formatDate(this.createdAt)
     }
   }
   Post.init({

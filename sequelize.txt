@@ -2,8 +2,16 @@ npx sequelize-cli model:create --name User --attributes fullName:string,email:st
 
 npx sequelize-cli model:create --name Profile --attributes photo:string,address:string,jabatan:string,numberPhone:string
 
-npx sequelize-cli model:create --name Post --attributes title:string,content:string,imgUrl:string,pendingStatus:integer,UserId:integer,TagId:integer
+npx sequelize-cli model:create --name Post --attributes title:string,content:text,imgUrl:string,pendingStatus:integer,UserId:integer,TagId:integer
 
 npx sequelize-cli model:create --name Tag --attributes name:string
 
 npx sequelize-cli migration:generate --name 'addFkToProfiles'
+
+npx sequelize-cli seed:generate --name 'seedUsers'
+
+npx sequelize-cli seed:generate --name 'seedTags'
+
+npx sequelize-cli seed:generate --name 'seedProfiles'
+
+npx sequelize-cli seed:generate --name 'seedPosts'
