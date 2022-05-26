@@ -42,6 +42,12 @@ router.get('/:role/add/article/:userId', Controller.formAdd)
 
 router.post('/:role/add/article/:userId', Controller.add) //admin
 
+router.get('/:role/article/:userId/:postId/edit', Controller.editArticle) //admin
+
+router.post('/:role/article/:userId/:postId/edit', Controller.updateArticle) //admin
+
+router.get('/:role/article/:userId/:postId/delete', Controller.deleteArticle) //admin
+
 router.use((req, res, next)=>{
     if(req.session.userId && req.session.role === 'User') {
         res.redirect('/?error=You need permission!')
@@ -56,10 +62,6 @@ router.get('/:role/article/:userId/:postId/approve', Controller.approveStatusArt
 
 
 
-router.get('/:role/article/:userId/:postId/edit', Controller.editArticle) //admin
 
-router.post('/:role/article/:userId/:postId/edit', Controller.updateArticle) //admin
-
-router.get('/:role/article/:userId/:postId/delete', Controller.deleteArticle) //admin
 
 module.exports = router

@@ -195,5 +195,6 @@ class Controller {
         .then(() => res.redirect(`/${role}/article/${userId}`))
         .catch((err) => {res.send(err)})
     }
+
 }
 module.exports = Controller

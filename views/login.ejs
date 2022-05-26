@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head'); %>
     <title>Login</title>
+    <style>
+        body{color: #000;overflow-x: hidden;height: 100%;background-image: url("https://img.freepik.com/free-vector/flat-minimal-geometric-background_52683-61878.jpg?w=826&t=st=1653310530~exp=1653311130~hmac=0d720cb67e7c692b4d6ec5ca896ef72ece172d9a0440d8b9e9bddc4c15a188d9");background-repeat: no-repeat;background-size: 100% 100%}.card{padding: 30px 40px;margin-top: 60px;margin-bottom: 60px;border: none !important;box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2)}.blue-text{color: #00BCD4}.form-control-label{margin-bottom: 0}input, textarea, button{padding: 8px 15px;border-radius: 5px !important;margin: 5px 0px;box-sizing: border-box;border: 1px solid #ccc;font-size: 18px !important;font-weight: 300}input:focus, textarea:focus{-moz-box-shadow: none !important;-webkit-box-shadow: none !important;box-shadow: none !important;border: 1px solid #00BCD4;outline-width: 0;font-weight: 400}.btn-block{text-transform: uppercase;font-size: 15px !important;font-weight: 400;height: 43px;cursor: pointer}.btn-block:hover{color: #fff !important}button:focus{-moz-box-shadow: none !important;-webkit-box-shadow: none !important;box-shadow: none !important;outline-width: 0}
+        
+    </style>
 </head>
 <body>
-    <% if (error) { %>
-        <p style="color: red;"><%= error %></p>
-    <% } %>
-    <form action="/login" method="post">
-      
-        <div class="container">
-          <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="userName" required>
-      
-          <label for="password"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="password" required>
-      
-          <button type="submit">Login</button>
-        </div>
+    
 
-      </form>
+      <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <div class="card">
+                    <h3 class="text-center mb-4">Login</h3>
+                    <% if (error) { %>
+                        <p style="color: red;"><%= error %></p>
+                    <% } %>
+                    <form class="form-card" action="/login" method="post">
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-12 flex-column d-flex" id="title"> 
+                                <label class="form-control-label px-3 text-center">Username<span class="text-danger"> *</span></label> 
+                                <input type="text" placeholder="Enter Username" name="userName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left mt-4">
+                            <div class="form-group col-sm-12 flex-column d-flex"> 
+                                <label class="form-control-label px-3 text-center">Password<span class="text-danger"> *</span></label> 
+                                <input type="password" placeholder="Enter Password" name="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="form-group col-sm-6"> <button type="submit" class="btn btn-dark">Login</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 </html>
