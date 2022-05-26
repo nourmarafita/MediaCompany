@@ -68,6 +68,7 @@ class Controller {
                 res.render('myArticle', {result, role, userId, postId, formatPending})
             })
             .catch(err=>{
+                console.log(err);
                 res.send(err)
             })
     }
@@ -93,7 +94,9 @@ class Controller {
             console.log(userId, '========>');
             res.redirect(`/${role}/article/${userId}/myArticle`)})
         .catch((err) => {
+            console.log(err);
             if (err.name === 'SequelizeValidationError'){
+
                 return res.send(err.errors.map(e => e.message))
             }
             // console.log(id);
@@ -112,7 +115,9 @@ class Controller {
             }]
         })
             .then(result=>{
-                res.render('detail-article',{result, role, userId, postId})
+                console.log(result);
+                const formatPending = Post.formatPendingStatus()
+                res.render('detail-article',{result, role, userId, postId,formatPending})
             })
             .catch((err)=>{
                 res.send(err)

@@ -3,13 +3,37 @@
 <head>
     <%- include('./partials/head'); %>
     <title>Detail Articles</title>
-
+    <style>
+        #image {
+            background: url('image.jpg') no-repeat;
+            background-size:contain;
+        }
+    </style>
 </head>
 <body>
-    <a href="/<%= role %>/add/article/<%= userId %>">Add</a>
+    <% const {title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPending, dateFormat, UserId} = result%> 
+    <div class="container px-4 mt-4 text-center">
+        <h1 class="mb-4"><%= title %></h1>
+        <div class="mb-4">
+            <p>Created By <%= User.userName %></p>
+            <p>Created at <%= dateFormat %></p>
+        </div>
+        <div>
+            <img src="<%= imgUrl %>" alt="img" id="image">
+        </div>
+        <p class="mt-4" style="font-size:20px"><%= content %></p>
+
+
+        <div>
+            <% if (role == "Admin") { %>
+                <p><%= formatPending %></p>
+                <!-- <button class="btn btn-primary" type="submit"><%=  %></button> -->
+            <% } %>
+        </div>
+    </div>
 
     <table border="1">
-        <% const {title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPendingStatus, dateFormat, UserId} = result%> 
+        
         <tr>
             <th>Title</th>
             <th>Content</th>
@@ -17,11 +41,11 @@
             <% if (role == "Admin") { %>
                 <th>Status</th>
             <% } %>
-            <th>Created By</th>
+            <th>Created By </th>
             <th>Category</th>
             <th>Created At</th>
             <% if (role == "Admin") { %>
-                <% if (formatPendingStatus == "Pending") { %>
+                <% if (formatPending == "Pending") { %>
                 <th>Action</th>
                 <% } %>
             <% } %>
@@ -33,14 +57,14 @@
                     <img src="<%= imgUrl %>" alt="img">
                 </td>
                 <% if (role == "Admin") { %>
-                    <td><%= formatPendingStatus %></td>
+                    <td><%= formatPending %></td>
                 <% } %>
                 <td><%= User.userName %></td>
                 <td><%= Tag.name %></td>
                 <td><%= dateFormat %></td>
                 <td>
                 <% if (role == "Admin") { %>
-                    <% if (formatPendingStatus == "Pending") { %>
+                    <% if (formatPending == "Pending") { %>
                     <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/reject">
                         <input type="submit" value="Reject" class="btn btn-danger">
                     </a>

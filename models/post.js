@@ -42,30 +42,8 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Content is required'
-        },
-        notEmpty: {
-          msg: 'Content is required'
-        }
-      }
-    },
-    imgUrl: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Content is required'
-        },
-        notEmpty: {
-          msg: 'Content is required'
-        }
-      }
-    },
+    content: DataTypes.STRING,
+    imgUrl: DataTypes.STRING,
     pendingStatus: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER,
     TagId: DataTypes.INTEGER
