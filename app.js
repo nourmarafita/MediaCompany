@@ -9,14 +9,11 @@ app.use(express.urlencoded({extended:false}))
 
 app.get('/', Controller.home)
 
-app.get('/add/article', Controller.formAdd)
+app.get('/:role/article/:id', Controller.articles)
 
-app.post('/add/article', (req, res)=>{
-    res.send('add article')
-})
+app.get('/:role/add/article/:id', Controller.formAdd)
 
-app.get('/:id/article', Controller.articles)
-
+app.post('/:role/add/article/:id', Controller.add)
 
 
 

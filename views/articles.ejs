@@ -7,14 +7,14 @@
     <title>Articles</title>
 </head>
 <body>
-    <a href="/add/article">Add</a>
+    <a href="/<%= role %>/add/article/<%= id %>">Add</a>
 
     <table border="1">
         <tr>
             <th>Title</th>
             <th>Content</th>
             <th>ImgUrl</th>
-            <% if (id == 2) { %>
+            <% if (role == 2) { %>
                 <th>Status</th>
             <% } %>
             <th>Created By</th>
@@ -30,7 +30,7 @@
                 <td>
                     <img src="<%= imgUrl %>" alt="img">
                 </td>
-                <% if (id == 2) { %>
+                <% if (role == 2) { %>
                     <td><%= formatPendingStatus %></td>
                 <% } %>
                 <td><%= User.fullName %></td>

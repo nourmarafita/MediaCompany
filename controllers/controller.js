@@ -6,7 +6,7 @@ class Controller {
     }
 
     static articles (req, res) {
-        const {id} = req.params
+        const {role, id} = req.params
         let options = {include: [
             {
               model: User
@@ -15,12 +15,12 @@ class Controller {
               model: Tag
             }
           ]}
-        if(id == 1) {
+        if(role == 1) {
             options.where = {"pendingStatus": 2}
         }
         Post.findAll(options)
             .then(result=>{
-                res.render('articles', {result, id})
+                res.render('articles', {result, role, id})
             })
             .catch(err=>{
                 res.send(err)
@@ -28,7 +28,19 @@ class Controller {
     }
 
     static formAdd (req, res) {
-        res.render('formadd')
+        const {role, id} = req.params
+        Tag.findAll()
+            .then(result=>{
+                res.render('formadd', {result, role, id})
+            })
+            .catch(err=>{
+                res.send(err)
+            })
+    }
+
+    static add (req, res) {
+        console.log(req.body);
+        res.send(req.body)
     }
 
 

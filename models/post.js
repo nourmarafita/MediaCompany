@@ -39,6 +39,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Post',
+    hooks: {
+      beforeCreate: (post, option) => {
+        if(post) {
+          
+        }
+      }
+    }
   });
   return Post;
 };
