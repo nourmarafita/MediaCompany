@@ -1,32 +1,7 @@
 [
     {
-        "fullName": "jenine",
-        "email": "jbrownstein0@exblog.jp",
+        "userName": "jenine",
         "password": "Kz0JTas",
-        "role": 1
-    },
-    {
-        "fullName": "thomasa",
-        "email": "tboyland1@nih.gov",
-        "password": "ZX2A4bs",
-        "role": 2
-    },
-    {
-        "fullName": "costanza",
-        "email": "caitchison2@alexa.com",
-        "password": "xO0JS7",
-        "role": 1
-    },
-    {
-        "fullName": "livvyy",
-        "email": "lcable3@newsvine.com",
-        "password": "8ohiVR7Z",
-        "role": 1
-    },
-    {
-        "fullName": "terrence",
-        "email": "tcallan4@elpais.com",
-        "password": "Dj04bXM6C6i",
-        "role": 2
+        "role": "Admin"
     }
 ]

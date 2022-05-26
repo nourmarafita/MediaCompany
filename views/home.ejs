@@ -6,6 +6,9 @@
 </head>
 <body>
   <%- include('./partials/navbar'); %>
+  <% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
 
   <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
     <div class="container">
@@ -21,10 +24,10 @@
                   </div>
                   <div class="col-lg-12">
                     <div class="white-button first-button scroll-to-section" >
-                      <a href="/authors" class="btn btn-light">Authors</a>
+                      <a href="/logout" class="btn btn-light">Logout</a>
                     </div>
                     <div class="white-button scroll-to-section">
-                      <a href="/posts" class="btn btn-light">Posts</a>
+                      <a href="/<%= role %>/article/<%- userId %>" class="btn btn-light">Articles</a>
                     </div>
                   </div>
                 </div>
