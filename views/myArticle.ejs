@@ -28,7 +28,7 @@
 
 
             <% result.forEach(el => { %>
-            <% const {id, UserId, title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPendingStatus, dateFormat} = el%> 
+            <% const {id, UserId, title, content, imgUrl, Tag, createdAt, User, dateFormat} = el%> 
             <% const postId = id %>
             <div class="card mb-3">
                 <img class="card-img-top" src="<%= imgUrl %>" alt="Card image cap">
@@ -36,7 +36,7 @@
                     <h5 class="card-title"><a href="/<%= role %>/article/<%= userId %>/<%= postId %>"><%= title %></a></h5>
                     <p class="card-text"><%= content %></p>
                     <p class="card-text"><small class="text-muted"><%= User.fullName %></small></p>
-                    <button type="button" class="btn btn-info"><%= formatPending %>
+                    <button type="button" class="btn btn-info"><%= el.formatPendingStatus() %>
                     </button>
                 </div>
                 

@@ -40,14 +40,15 @@ router.get('/:role/article/:userId/:postId', Controller.showArticlesById)
 
 router.get('/:role/add/article/:userId', Controller.formAdd)
 
-router.post('/:role/add/article/:userId', Controller.add) //admin
+router.post('/:role/add/article/:userId', Controller.add) 
 
-router.get('/:role/article/:userId/:postId/edit', Controller.editArticle) //admin
+router.get('/:role/article/:userId/:postId/edit', Controller.editArticle) 
 
-router.post('/:role/article/:userId/:postId/edit', Controller.updateArticle) //admin
+router.post('/:role/article/:userId/:postId/edit', Controller.updateArticle) 
 
-router.get('/:role/article/:userId/:postId/delete', Controller.deleteArticle) //admin
+router.get('/:role/article/:userId/:postId/delete', Controller.deleteArticle) 
 
+//block user
 router.use((req, res, next)=>{
     if(req.session.userId && req.session.role === 'User') {
         res.redirect('/?error=You need permission!')
