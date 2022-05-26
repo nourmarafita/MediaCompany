@@ -32,7 +32,7 @@
                 <img class="card-img-top" src="<%= imgUrl %>" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><a href="/<%= role %>/article/<%= userId %>/<%= postId %>"><%= title %></a></h5>
-                    <p class="card-text"><%= content %></p>
+                    <p class="card-text"><%= customFilter.clean(content) %></p>
                     <p class="card-text"><small class="text-muted"><%= User.fullName %></small></p>
                     <button type="button" class="btn btn-info"><%= el.formatPendingStatus() %>
                     </button>

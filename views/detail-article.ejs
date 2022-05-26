@@ -22,10 +22,10 @@
         <div>
             <img src="<%= imgUrl %>" alt="img" id="image">
         </div>
-        <p class="mt-4" style="font-size:20px"><%= content %></p>
+        <p class="mt-4" style="font-size:20px"><%= customFilter.clean(content) %></p>
 
         <div class="mb-4">
-            <% if (userId == UserId) { %>
+            <% if (userId == UserId || role === 'Admin') { %>
             <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/edit">
                 <input type="submit" value="Edit" class="btn btn-success">
             </a>
