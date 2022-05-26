@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head'); %>
     <title>Articles</title>
 </head>
 <body>
-    <a href="/<%= role %>/add/article/<%= id %>">Add</a>
+    <a href="/<%= role %>/add/article/<%= userId %>">Add</a>
 
     <table border="1">
         <tr>
@@ -23,9 +21,10 @@
         </tr>
         
         <% result.forEach(el => { %>
-            <% const {title, content, imgUrl, pendingStatus, User, Tag, createdAt, formatPendingStatus, dateFormat} = el%> 
+            <% const {id, UserId, title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPendingStatus, dateFormat} = el%> 
+            <% const postId = id %>
             <tr>
-                <td><%= title %></td>
+                <td><a href="/<%= role %>/article/<%= userId %>/<%= postId %>"><%= title %></a></td>
                 <td><%= content %></td>
                 <td>
                     <img src="<%= imgUrl %>" alt="img">
@@ -39,6 +38,7 @@
             </tr>
         <% }) %>
     </table>
+
     
 </body>
 </html>

@@ -41,9 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Post',
     hooks: {
       beforeCreate: (post, option) => {
-        if(post) {
-          
-        }
+        post.pendingStatus = 1
       }
     }
   });

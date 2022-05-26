@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head'); %>
+    <title>Detail Articles</title>
+
+</head>
+<body>
+    <a href="/<%= role %>/add/article/<%= userId %>">Add</a>
+
+    <table border="1">
+        <% const {title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPendingStatus, dateFormat, UserId} = result%> 
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>ImgUrl</th>
+            <% if (role == 2) { %>
+                <th>Status</th>
+            <% } %>
+            <th>Created By</th>
+            <th>Category</th>
+            <th>Created At</th>
+            <% if (role == 2) { %>
+                <% if (formatPendingStatus == "Pending") { %>
+                <th>Action</th>
+                <% } %>
+            <% } %>
+        </tr>
+            <tr>
+                <td><%= title %></td>
+                <td><%= content %></td>
+                <td>
+                    <img src="<%= imgUrl %>" alt="img">
+                </td>
+                <% if (role == 2) { %>
+                    <td><%= formatPendingStatus %></td>
+                <% } %>
+                <td><%= User.fullName %></td>
+                <td><%= Tag.name %></td>
+                <td><%= dateFormat %></td>
+                <td>
+                <% if (role == 2) { %>
+                    <% if (formatPendingStatus == "Pending") { %>
+                    <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/reject">
+                        <input type="submit" value="Reject" class="btn btn-danger">
+                    </a>
+                    <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/approve">
+                        <input type="submit" value="Approve" class="btn btn-success">
+                    </a>
+                    <% } %>
+                <% } %>
+                <% if (userId == UserId) { %>
+                    <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/edit">
+                        <input type="submit" value="Edit" class="btn btn-success">
+                    </a>
+                    <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/delete">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </a>
+                <% } %>
+                </td>
+            </tr>
+    </table>
+</body>
+</html>
