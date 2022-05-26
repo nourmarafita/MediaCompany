@@ -2,7 +2,9 @@ const {Post, Profile, Tag, User} = require("../models")
 
 class Controller {
     static home (req, res) {
-        res.render('home')
+        const {error} = req.query
+        const {userId, role} = req.session
+        res.render('home', {userId, role, error})
     }
 
     static articles (req, res) {
@@ -15,7 +17,7 @@ class Controller {
               model: Tag
             }
           ]}
-        if(role == 1) {
+        if(role === "User") {
             options.where = {"pendingStatus": 2}
         }
         Post.findAll(options)

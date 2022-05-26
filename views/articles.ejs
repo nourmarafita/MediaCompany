@@ -5,6 +5,7 @@
     <title>Articles</title>
 </head>
 <body>
+
     <a href="/<%= role %>/add/article/<%= userId %>">Add</a>
 
     <table border="1">
@@ -12,7 +13,7 @@
             <th>Title</th>
             <th>Content</th>
             <th>ImgUrl</th>
-            <% if (role == 2) { %>
+            <% if (role === "Admin") { %>
                 <th>Status</th>
             <% } %>
             <th>Created By</th>
@@ -29,16 +30,15 @@
                 <td>
                     <img src="<%= imgUrl %>" alt="img">
                 </td>
-                <% if (role == 2) { %>
+                <% if (role === 'Admin') { %>
                     <td><%= formatPendingStatus %></td>
                 <% } %>
-                <td><%= User.fullName %></td>
+                <td><%= User.userName %></td>
                 <td><%= Tag.name %></td>
                 <td><%= dateFormat %></td>
             </tr>
         <% }) %>
     </table>
 
-    
 </body>
 </html>

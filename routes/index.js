@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const UserController = require('../controllers/usercontroller')
-const Controller = require('../controllers/controller')
+const Controller = require('../controllers/controller');
 
 //get register
 router.get('/register', UserController.registerForm)
@@ -9,27 +9,51 @@ router.get('/register', UserController.registerForm)
 //post register
 router.post('/register', UserController.register)
 
+//get login
+router.get('/login', UserController.loginForm)
+
+//post login
+router.post('/login', UserController.login)
+
+//post logout
+router.get('/logout', UserController.logout)
+
+//after login (session)
+
+router.use((req, res ,next)=>{
+    if(!req.session.userId) {
+        res.redirect('/login?error=Please login first')
+    }else {
+        next()
+    }
+})
+
 router.get('/', Controller.home)
 
-router.get('/:role/article/:userId', Controller.articles)
+router.get('/:role/article/:userId', Controller.articles) 
+
+router.get('/:role/article/:userId/:postId', Controller.showArticlesById) 
 
 router.get('/:role/add/article/:userId', Controller.formAdd)
 
-router.post('/:role/add/article/:userId', Controller.add)
+router.use((req, res, next)=>{
+    if(req.session.userId && req.session.role === 'User') {
+        res.redirect('/?error=You need permission!')
+    }else{
+        next()
+    }
+})
 
-router.get('/:role/article/:userId/:postId', Controller.showArticlesById)
+router.get('/:role/article/:userId/:postId/reject', Controller.rejectStatusArticle) //admin
 
-router.get('/:role/article/:userId/:postId/reject', Controller.rejectStatusArticle)
+router.get('/:role/article/:userId/:postId/approve', Controller.approveStatusArticle) //admin
 
-router.get('/:role/article/:userId/:postId/approve', Controller.approveStatusArticle)
+router.post('/:role/add/article/:userId', Controller.add) //admin
 
-router.get('/:role/article/:userId/:postId/edit', Controller.editArticle)
+router.get('/:role/article/:userId/:postId/edit', Controller.editArticle) //admin
 
-router.post('/:role/article/:userId/:postId/edit', Controller.updateArticle)
+router.post('/:role/article/:userId/:postId/edit', Controller.updateArticle) //admin
 
-router.get('/:role/article/:userId/:postId/delete', Controller.deleteArticle)
-
-// Auth Page
-
+router.get('/:role/article/:userId/:postId/delete', Controller.deleteArticle) //admin
 
 module.exports = router

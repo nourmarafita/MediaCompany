@@ -14,13 +14,13 @@
             <th>Title</th>
             <th>Content</th>
             <th>ImgUrl</th>
-            <% if (role == 2) { %>
+            <% if (role == "Admin") { %>
                 <th>Status</th>
             <% } %>
             <th>Created By</th>
             <th>Category</th>
             <th>Created At</th>
-            <% if (role == 2) { %>
+            <% if (role == "Admin") { %>
                 <% if (formatPendingStatus == "Pending") { %>
                 <th>Action</th>
                 <% } %>
@@ -32,14 +32,14 @@
                 <td>
                     <img src="<%= imgUrl %>" alt="img">
                 </td>
-                <% if (role == 2) { %>
+                <% if (role == "Admin") { %>
                     <td><%= formatPendingStatus %></td>
                 <% } %>
-                <td><%= User.fullName %></td>
+                <td><%= User.userName %></td>
                 <td><%= Tag.name %></td>
                 <td><%= dateFormat %></td>
                 <td>
-                <% if (role == 2) { %>
+                <% if (role == "Admin") { %>
                     <% if (formatPendingStatus == "Pending") { %>
                     <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/reject">
                         <input type="submit" value="Reject" class="btn btn-danger">
