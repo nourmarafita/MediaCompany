@@ -1,4 +1,5 @@
 const {Post, Profile, Tag, User} = require("../models")
+const { Op } = require('sequelize')
 
 class Controller {
     static home (req, res) {
@@ -7,6 +8,7 @@ class Controller {
 
     static articles (req, res) {
         const {role, userId, postId} = req.params
+        const { search } = req.query
         let options = {include: [
             {
               model: User
@@ -18,9 +20,50 @@ class Controller {
         if(role == 1) {
             options.where = {"pendingStatus": 2}
         }
+
+        if(search){
+            options.where = { 
+                ...options.where, 
+                title: {
+                [Op.iLike]: `%${search}%`
+                }
+            }
+        }
         Post.findAll(options)
             .then(result=>{
-                res.render('articles', {result, role, userId, postId})
+                const formatPending = Post.formatPendingStatus()
+                res.render('articles', {result, role, userId, postId, formatPending})
+            })
+            .catch(err=>{
+                res.send(err)
+            })
+    }
+
+    static myArticle (req, res) {
+        const {role, userId, postId} = req.params
+        const { search } = req.query
+        let options = {include: [
+            {
+              model: User
+            },
+            {
+              model: Tag
+            }
+          ], where: {UserId: userId}}
+
+        if(search){
+            options.where = { 
+                ...options.where, 
+                title: {
+                [Op.iLike]: `%${search}%`
+                }
+            }
+        }
+
+        Post.findAll(options)
+            .then(result=>{
+                const formatPending = Post.formatPendingStatus()
+                res.render('myArticle', {result, role, userId, postId, formatPending})
             })
             .catch(err=>{
                 res.send(err)
@@ -45,13 +88,13 @@ class Controller {
         // console.log(req.params);
         Post.create({ title, content, imgUrl, TagId, UserId })
         .then(() => {
-            console.log(userId);
-            res.redirect(`/${role}/article/${userId}`)})
+            console.log(userId, '========>');
+            res.redirect(`/${role}/article/${userId}/myArticle`)})
         .catch((err) => {
             if (err.name === 'SequelizeValidationError'){
                 return res.send(err.errors.map(e => e.message))
             }
-            console.log(id);
+            // console.log(id);
             res.send(err)
         })
     }

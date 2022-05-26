@@ -6,6 +6,8 @@ router.get('/', Controller.home)
 
 router.get('/:role/article/:userId', Controller.articles)
 
+router.get('/:role/article/:userId/myArticle', Controller.myArticle)
+
 router.get('/:role/add/article/:userId', Controller.formAdd)
 
 router.post('/:role/add/article/:userId', Controller.add)

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Post.belongsTo(models.Tag, {foreignKey: "TagId"})
     }
     
-    get formatPendingStatus () {
+    static formatPendingStatus () {
       if(this.pendingStatus === 1) {
         return 'Pending'
       }else if (this.pendingStatus === 2) {
@@ -30,9 +30,42 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Post.init({
-    title: DataTypes.STRING,
-    content: DataTypes.STRING,
-    imgUrl: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Title is required'
+        },
+        notEmpty: {
+          msg: 'Title is required'
+        }
+      }
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Content is required'
+        },
+        notEmpty: {
+          msg: 'Content is required'
+        }
+      }
+    },
+    imgUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Content is required'
+        },
+        notEmpty: {
+          msg: 'Content is required'
+        }
+      }
+    },
     pendingStatus: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER,
     TagId: DataTypes.INTEGER
