@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Post.belongsTo(models.User, { foreignKey: "UserId" })
       Post.belongsTo(models.Tag, { foreignKey: "TagId" })
     }
-
-    get formatPendingStatus() {
-      if (this.pendingStatus === 1) {
+    
+    static formatPendingStatus () {
+      if(this.pendingStatus === 1) {
         return 'Pending'
       } else if (this.pendingStatus === 2) {
         return 'Approved'

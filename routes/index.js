@@ -32,9 +32,15 @@ router.get('/', Controller.home)
 
 router.get('/:role/article/:userId', Controller.articles) 
 
+router.get('/:role/article/:userId/myArticle', Controller.myArticle)
+
 router.get('/:role/article/:userId/:postId', Controller.showArticlesById) 
 
+
+
 router.get('/:role/add/article/:userId', Controller.formAdd)
+
+router.post('/:role/add/article/:userId', Controller.add) //admin
 
 router.use((req, res, next)=>{
     if(req.session.userId && req.session.role === 'User') {
@@ -48,7 +54,7 @@ router.get('/:role/article/:userId/:postId/reject', Controller.rejectStatusArtic
 
 router.get('/:role/article/:userId/:postId/approve', Controller.approveStatusArticle) //admin
 
-router.post('/:role/add/article/:userId', Controller.add) //admin
+
 
 router.get('/:role/article/:userId/:postId/edit', Controller.editArticle) //admin
 

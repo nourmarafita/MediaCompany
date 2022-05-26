@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <%- include('./partials/head'); %>
-    <title>Form Add</title>
+    <title>Form Edit</title>
 </head>
 <body>
     <h1>Edit Article</h1>
 
-    <form action="/<%= role %>/add/article/<%= userId %>" method="post">
+    <form action="/<%= role %>/article/<%= userId %>/<%= postId %>/edit" method="post">
         <label for="">Title</label>
         <input type="text" name="title" value="<%= result.title %>">
         <br>

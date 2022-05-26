@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head'); %>
+    <title>Articles</title>
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 15vw;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container px-4 mt-4">
+        <div class="container px-4 mt-4">
+            <h1>My Article</h1>
+            <form action="/<%= role %>/article/<%= userId %>">
+                <input type="text" name="search" placeholder="Search..">
+                <input type="submit" value="search">
+                <a class="btn btn-primary mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">Clear search</a>
+            </form>
+            
+            <a class="btn btn-primary " href="/<%= role %>/add/article/<%= userId %>" role="button">Add</a>
+            <a class="btn btn-warning mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">All Article</a>
+
+
+            <% result.forEach(el => { %>
+            <% const {id, UserId, title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPendingStatus, dateFormat} = el%> 
+            <% const postId = id %>
+            <div class="card mb-3">
+                <img class="card-img-top" src="<%= imgUrl %>" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><%= title %></h5>
+                    <p class="card-text"><%= content %></p>
+                    <p class="card-text"><small class="text-muted"><%= User.fullName %></small></p>
+                </div>
+            </div>
+            <% }) %>
+
+        </div>
+
+    
+</body>
+</html>
