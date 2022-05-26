@@ -1,4 +1,6 @@
 const {Post, Profile, Tag, User} = require("../models")
+var Filter = require('bad-words');
+var customFilter = new Filter({ placeHolder: 'x'});
 
 class Controller {
     static home (req, res) {
@@ -22,7 +24,7 @@ class Controller {
         }
         Post.findAll(options)
             .then(result=>{
-                res.render('articles', {result, role, userId, postId})
+                res.render('articles', {result, role, userId, postId, customFilter})
             })
             .catch(err=>{
                 res.send(err)
@@ -44,10 +46,8 @@ class Controller {
         const { title, content, imgUrl, TagId} = req.body
         const {role, userId} = req.params
         const UserId = userId
-        // console.log(req.params);
         Post.create({ title, content, imgUrl, TagId, UserId })
         .then(() => {
-            console.log(userId);
             res.redirect(`/${role}/article/${userId}`)})
         .catch((err) => {
             if (err.name === 'SequelizeValidationError'){
@@ -69,7 +69,7 @@ class Controller {
             }]
         })
             .then(result=>{
-                res.render('detail-article',{result, role, userId, postId})
+                res.render('detail-article',{result, role, userId, postId, customFilter})
             })
             .catch((err)=>{
                 res.send(err)

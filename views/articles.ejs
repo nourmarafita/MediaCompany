@@ -26,7 +26,7 @@
             <% const postId = id %>
             <tr>
                 <td><a href="/<%= role %>/article/<%= userId %>/<%= postId %>"><%= title %></a></td>
-                <td><%= content %></td>
+                <td><%= customFilter.clean(content) %></td>
                 <td>
                     <img src="<%= imgUrl %>" alt="img">
                 </td>

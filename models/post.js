@@ -11,31 +11,81 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Post.belongsTo(models.User, {foreignKey: "UserId"})
-      Post.belongsTo(models.Tag, {foreignKey: "TagId"})
+      Post.belongsTo(models.User, { foreignKey: "UserId" })
+      Post.belongsTo(models.Tag, { foreignKey: "TagId" })
     }
-    
-    get formatPendingStatus () {
-      if(this.pendingStatus === 1) {
+
+    get formatPendingStatus() {
+      if (this.pendingStatus === 1) {
         return 'Pending'
-      }else if (this.pendingStatus === 2) {
+      } else if (this.pendingStatus === 2) {
         return 'Approved'
-      }else {
+      } else {
         return 'Rejected'
       }
     }
 
-    get dateFormat () {
+    get dateFormat() {
       return formatDate(this.createdAt)
     }
   }
   Post.init({
-    title: DataTypes.STRING,
-    content: DataTypes.STRING,
-    imgUrl: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: 'title cannot be null' },
+        notEmpty: { msg: 'title cannot be empty' },
+        capitalWord(title) {
+          let kataDepan = title[0]
+          let pembanding = title[0].toLowerCase()
+
+          if(kataDepan === pembanding) {
+            throw new Error('the title must have a capital letter in front of the word')
+          }
+        }
+      }
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: 'content cannot be null' },
+        notEmpty: { msg: 'content cannot be empty' },
+        minimumSentence(word) {
+          let kata = word.split(' ').filter(el => el !== '').length
+          if (kata < 10) {
+            throw new Error('Content minimal 10 words')
+          }
+        }
+      }
+    },
+    imgUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: 'Img Url cannot be null' },
+        notEmpty: { msg: 'Img Url cannot be empty' },
+        isUrl: { msg: 'Img Url must be URL' }
+      }
+    },
     pendingStatus: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER,
-    TagId: DataTypes.INTEGER
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: { msg: 'User Id cannot be null' },
+        notEmpty: { msg: 'User Id cannot be empty' }
+      }
+    },
+    TagId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: { msg: 'Category cannot be null' },
+        notEmpty: { msg: 'Category cannot be empty' }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Post',
