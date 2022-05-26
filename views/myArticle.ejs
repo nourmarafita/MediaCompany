@@ -20,7 +20,7 @@
                 <input type="submit" value="search">
                 <a class="btn btn-primary mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">Clear search</a>
             </form>
-            
+
             <a class="btn btn-primary " href="/<%= role %>/add/article/<%= userId %>" role="button">Add</a>
             <a class="btn btn-warning mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">All Article</a>
 
@@ -34,7 +34,10 @@
                     <h5 class="card-title"><%= title %></h5>
                     <p class="card-text"><%= content %></p>
                     <p class="card-text"><small class="text-muted"><%= User.fullName %></small></p>
+                    <button type="button" class="btn btn-info"><%= formatPending %>
+                    </button>
                 </div>
+                
             </div>
             <% }) %>
 

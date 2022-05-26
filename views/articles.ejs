@@ -23,64 +23,28 @@
             <input type="submit" value="search">
             <a class="btn btn-primary mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">Clear search</a>
         </form>
-        <a href="/<%= role %>/add/article/<%= userId %>">Add</a>
-        <a href="/<%= role %>/article/<%= userId %>/myArticle">My Article</a>
+        <a class="btn btn-primary " href="/<%= role %>/add/article/<%= userId %>" role="button">Add</a>
+        <a class="btn btn-warning mt-4 mb-4" href="/<%= role %>/article/<%= userId %>/myArticle" role="button">My Article</a>
+
 
 
         <% result.forEach(el => { %>
-            <% const {id, UserId, title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPendingStatus, dateFormat} = el%> 
+            <% const {id, UserId, title, content, imgUrl, pendingStatus, Tag, createdAt, User, dateFormat} = el%> 
             <% const postId = id %>
-            <tr>
-                <td><a href="/<%= role %>/article/<%= userId %>/<%= postId %>"><%= title %></a></td>
-                <td><%= customFilter.clean(content) %></td>
-                <td>
-                    <img src="<%= imgUrl %>" alt="img">
-                </td>
+        <div class="card mb-3">
+            <img class="card-img-top" src="<%= imgUrl %>" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><a href="/<%= role %>/article/<%= userId %>/<%= postId %>"><%= title %></a></h5>
+                <p class="card-text"><%= content %></p>
+                <p class="card-text"><small class="text-muted"><%= User.fullName %></small></p>
                 <% if (role === 'Admin') { %>
-                    <td><%= formatPendingStatus %></td>
+                <button type="button" class="btn btn-info"><%= formatPending %>
+                </button>
                 <% } %>
-                <td><%= User.userName %></td>
-                <td><%= Tag.name %></td>
-                <td><%= dateFormat %></td>
-            </tr>
+            </div>
+        </div>
         <% }) %>
 
-        
-        <table border="1">
-            <tr>
-                <th>Title</th>
-                <th>Content</th>
-                <th>ImgUrl</th>
-                <% if (role == "Admin") { %>
-                    <th>Status</th>
-                <% } %>
-                <th>Created By</th>
-                <th>Category</th>
-                <th>Created At</th>
-            </tr>
-            
-            <% result.forEach(el => { %>
-                <% const {id, UserId, title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPendingStatus, dateFormat} = el%> 
-                <% const postId = id %>
-                <tr>
-                    <td><a href="/<%= role %>/article/<%= userId %>/<%= postId %>"><%= title %></a></td>
-                    <td><%= content %></td>
-                    <td>
-                        <img src="<%= imgUrl %>" alt="img">
-                    </td>
-                    <% if (role == "Admin") { %>
-                        <td><%= formatPending %></td>
-                    <% } %>
-                    <td><%= User.fullName %></td>
-                    <td><%= Tag.name %></td>
-                    <td><%= dateFormat %></td>
-                </tr>
-            <% }) %>
-        </table>
-    </div>
-
-    
-   
 
 </body>
 </html>

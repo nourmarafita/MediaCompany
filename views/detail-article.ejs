@@ -23,66 +23,18 @@
         </div>
         <p class="mt-4" style="font-size:20px"><%= content %></p>
 
-
-        <div>
-            <% if (role == "Admin") { %>
-                <p><%= formatPending %></p>
-                <!-- <button class="btn btn-primary" type="submit"><%=  %></button> -->
-            <% } %>
+        <div class="mb-4">
+            <% if (userId == UserId) { %>
+            <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/edit">
+                <input type="submit" value="Edit" class="btn btn-success">
+            </a>
+            <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/delete">
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </a>
+        <% } %>
         </div>
+        <p class="mt-4">Category: <%= Tag.name %></p>
     </div>
 
-    <table border="1">
-        
-        <tr>
-            <th>Title</th>
-            <th>Content</th>
-            <th>ImgUrl</th>
-            <% if (role == "Admin") { %>
-                <th>Status</th>
-            <% } %>
-            <th>Created By </th>
-            <th>Category</th>
-            <th>Created At</th>
-            <% if (role == "Admin") { %>
-                <% if (formatPending == "Pending") { %>
-                <th>Action</th>
-                <% } %>
-            <% } %>
-        </tr>
-            <tr>
-                <td><%= title %></td>
-                <td><%= customFilter.clean(content) %></td>
-                <td>
-                    <img src="<%= imgUrl %>" alt="img">
-                </td>
-                <% if (role == "Admin") { %>
-                    <td><%= formatPending %></td>
-                <% } %>
-                <td><%= User.userName %></td>
-                <td><%= Tag.name %></td>
-                <td><%= dateFormat %></td>
-                <td>
-                <% if (role == "Admin") { %>
-                    <% if (formatPending == "Pending") { %>
-                    <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/reject">
-                        <input type="submit" value="Reject" class="btn btn-danger">
-                    </a>
-                    <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/approve">
-                        <input type="submit" value="Approve" class="btn btn-success">
-                    </a>
-                    <% } %>
-                <% } %>
-                <% if (userId == UserId) { %>
-                    <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/edit">
-                        <input type="submit" value="Edit" class="btn btn-success">
-                    </a>
-                    <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/delete">
-                        <input type="submit" value="Delete" class="btn btn-danger">
-                    </a>
-                <% } %>
-                </td>
-            </tr>
-    </table>
 </body>
 </html>

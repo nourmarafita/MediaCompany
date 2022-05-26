@@ -36,7 +36,8 @@ class Controller {
         Post.findAll(options)
             .then(result=>{
                 const formatPending = Post.formatPendingStatus()
-                res.render('articles', {result, role, userId, postId, formatPending})
+                console.log(customFilter.clean('motherfucker'));
+                res.render('articles', {result, role, userId, postId, formatPending, customFilter})
             })
             .catch(err=>{
                 res.send(err)
@@ -67,7 +68,7 @@ class Controller {
         Post.findAll(options)
             .then(result=>{
                 const formatPending = Post.formatPendingStatus()
-                res.render('myArticle', {result, role, userId, postId, formatPending})
+                res.render('myArticle', {result, role, userId, postId, formatPending, customFilter})
             })
             .catch(err=>{
                 console.log(err);
@@ -118,7 +119,7 @@ class Controller {
             .then(result=>{
                 console.log(result);
                 const formatPending = Post.formatPendingStatus()
-                res.render('detail-article',{result, role, userId, postId,formatPending})
+                res.render('detail-article',{result, role, userId, postId,formatPending, customFilter})
             })
             .catch((err)=>{
                 res.send(err)

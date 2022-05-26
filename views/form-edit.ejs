@@ -3,68 +3,85 @@
 <head>
     <%- include('./partials/head'); %>
     <title>Form Edit</title>
+     <style>
+        body{color: #000;overflow-x: hidden;height: 100%;background-image: url("https://img.freepik.com/free-vector/flat-minimal-geometric-background_52683-61878.jpg?w=826&t=st=1653310530~exp=1653311130~hmac=0d720cb67e7c692b4d6ec5ca896ef72ece172d9a0440d8b9e9bddc4c15a188d9");background-repeat: no-repeat;background-size: 100% 100%}.card{padding: 30px 40px;margin-top: 60px;margin-bottom: 60px;border: none !important;box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2)}.blue-text{color: #00BCD4}.form-control-label{margin-bottom: 0}input, textarea, button{padding: 8px 15px;border-radius: 5px !important;margin: 5px 0px;box-sizing: border-box;border: 1px solid #ccc;font-size: 18px !important;font-weight: 300}input:focus, textarea:focus{-moz-box-shadow: none !important;-webkit-box-shadow: none !important;box-shadow: none !important;border: 1px solid #00BCD4;outline-width: 0;font-weight: 400}.btn-block{text-transform: uppercase;font-size: 15px !important;font-weight: 400;height: 43px;cursor: pointer}.btn-block:hover{color: #fff !important}button:focus{-moz-box-shadow: none !important;-webkit-box-shadow: none !important;box-shadow: none !important;outline-width: 0}
+        
+    </style>
 </head>
 <body>
-    <h1>Edit Article</h1>
-
-    <form action="/<%= role %>/article/<%= userId %>/<%= postId %>/edit" method="post">
-        <label for="">Title</label>
-        <input type="text" name="title" value="<%= result.title %>">
-        <br>
-
-        <label for="">Content</label>
-        <br>
-        <textarea name="content" id="" cols="30" rows="10"><%= result.content %></textarea>
-        <br>
-
-        <label for="">Img Url</label>
-        <input type="text" name="imgUrl" value="<%= result.imgUrl %>">
-        <br>
-
-        <label for="">Tag</label>
-        <select name="TagId" id="">
-            <% if (result.TagId == 1) { %>
-                <option value="1" selected>Healthy</option>
-            <% }else { %>
-                <option value="1">Healthy</option>
-            <% } %>
-
-
-            <% if (result.TagId == 2) { %>
-                <option value="2" selected>Lifestyle</option>
-            <% }else { %>
-                <option value="2">Lifestyle</option>
-            <% } %>
-
-
-            <% if (result.TagId == 3) { %>
-                <option value="3" selected>Technology</option>
-            <% }else { %>
-                <option value="3">Technology</option>
-            <% } %>
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <div class="card">
+                    <h3 class="text-center mb-4">Edit Article</h3>
+                    <form class="form-card" action="/<%= role %>/add/article/<%= userId %>" method="post">
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-12 flex-column d-flex" id="title"> 
+                                <label class="form-control-label px-3 text-center">Title<span class="text-danger"> *</span></label> 
+                                <input type="text" name="title" value="<%= result.title %>" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                        
+                        <div class="row justify-content-between text-left mt-4">
+                            <div class="form-group flex-column d-flex col-sm-12" id="title"> 
+                                <label class="form-control-label px-3 text-center" for="description">Description</label> 
+                                <textarea id="description" name="content"  class="form-control" cols="30" rows="10"><%= result.content %></textarea>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left mt-4">
+                            <div class="form-group col-sm-12 flex-column d-flex" id="title"> 
+                                <label class="form-control-label px-3 text-center" id="imageUrl">Image URL<span class="text-danger"> *</span></label> 
+                                <input type="text" name="imgUrl" value="<%= result.imgUrl %>" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left mt-4">
+                            <div class="form-group col-sm-12 flex-column d-flex" id="title"> 
+                                <label class="form-control-label px-3 text-center">Tag<span class="text-danger"> *</span></label> 
+                                <select name="TagId" id="">
+                                    <% if (result.TagId == 1) { %>
+                                        <option value="1" selected>Healthy</option>
+                                    <% }else { %>
+                                        <option value="1">Healthy</option>
+                                    <% } %>
 
 
-            <% if (result.TagId == 4) { %>
-                <option value="4" selected>Marketing</option>
-            <% }else { %>
-                <option value="4">Marketing</option>
-            <% } %>
-
-            
-            <% if (result.TagId == 5) { %>
-                <option value="5" selected>Politic</option>
-            <% }else { %>
-                <option value="5">Politic</option>
-            <% } %>
-        </select>
-        <br>
+                                    <% if (result.TagId == 2) { %>
+                                        <option value="2" selected>Lifestyle</option>
+                                    <% }else { %>
+                                        <option value="2">Lifestyle</option>
+                                    <% } %>
 
 
-        
+                                    <% if (result.TagId == 3) { %>
+                                        <option value="3" selected>Technology</option>
+                                    <% }else { %>
+                                        <option value="3">Technology</option>
+                                    <% } %>
 
 
-        <button type="submit">Submit</button>
-    </form>
-    
+                                    <% if (result.TagId == 4) { %>
+                                        <option value="4" selected>Marketing</option>
+                                    <% }else { %>
+                                        <option value="4">Marketing</option>
+                                    <% } %>
+
+                                    
+                                    <% if (result.TagId == 5) { %>
+                                        <option value="5" selected>Politic</option>
+                                    <% }else { %>
+                                        <option value="5">Politic</option>
+                                    <% } %>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="form-group col-sm-6"> <button type="submit" class="btn btn-dark">Submit</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
