@@ -38,7 +38,7 @@
                 <p class="card-text"><%= content %></p>
                 <p class="card-text"><small class="text-muted"><%= User.fullName %></small></p>
                 <% if (role === 'Admin') { %>
-                <button type="button" class="btn btn-info"><%= formatPending %>
+                <button type="button" class="btn btn-info"><%= el.formatPendingStatus() %>
                 </button>
                 <% } %>
             </div>

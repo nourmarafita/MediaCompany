@@ -11,12 +11,13 @@
     </style>
 </head>
 <body>
-    <% const {title, content, imgUrl, pendingStatus, Tag, createdAt, User, formatPending, dateFormat, UserId} = result%> 
+    <% const {title, content, imgUrl, Tag, createdAt, User, dateFormat, UserId} = result%> 
     <div class="container px-4 mt-4 text-center">
         <h1 class="mb-4"><%= title %></h1>
         <div class="mb-4">
             <p>Created By <%= User.userName %></p>
             <p>Created at <%= dateFormat %></p>
+            <p>Status <%= result.formatPendingStatus() %></p>
         </div>
         <div>
             <img src="<%= imgUrl %>" alt="img" id="image">
@@ -32,6 +33,20 @@
                 <input type="submit" value="Delete" class="btn btn-danger">
             </a>
         <% } %>
+        </div>
+
+        <div class="mb-4">
+            <% if (role === 'Admin') { %>
+                <% if (result.pendingStatus == 1) { %>
+                <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/approve">
+                    <input type="submit" value="Approve" class="btn btn-success">
+                </a>
+                <a href="/<%= role %>/article/<%= userId %>/<%= postId %>/reject">
+                    <input type="submit" value="Reject" class="btn btn-danger">
+                </a>
+
+                <% } %>
+            <% } %>
         </div>
         <p class="mt-4">Category: <%= Tag.name %></p>
     </div>
