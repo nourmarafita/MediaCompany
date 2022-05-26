@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head'); %>
     <title>Articles</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style1.css">
-    <link href="https://fonts.googleapis.com/css?family=Manrope:200,300,regular,500,600,700,800" rel="stylesheet" />
     <style>
         .card-img-top {
             width: 100%;
@@ -16,15 +12,20 @@
     </style>
 </head>
 <body>
+    
     <div class="container px-4 mt-4">
+        
         <h1>All Article</h1>
-        <form action="/<%= role %>/article/<%= userId %>">
+        <div class="float-right">
+            <form action="/<%= role %>/article/<%= userId %>">
             <input type="text" name="search" placeholder="Search..">
-            <input type="submit" value="search">
-            <a class="btn btn-primary mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">Clear search</a>
-        </form>
+            <a class="btn btn-success " type="submit" value="search" role="button" style="color: white">search</a>
+            <a class="btn btn-dark mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">Clear search</a>
+            </form>
+        </div>
         <a class="btn btn-primary " href="/<%= role %>/add/article/<%= userId %>" role="button">Add</a>
         <a class="btn btn-warning mt-4 mb-4" href="/<%= role %>/article/<%= userId %>/myArticle" role="button">My Article</a>
+
 
 
 

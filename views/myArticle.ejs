@@ -15,11 +15,13 @@
     <div class="container px-4 mt-4">
         <div class="container px-4 mt-4">
             <h1>My Article</h1>
-            <form action="/<%= role %>/article/<%= userId %>">
+            <div class="float-right">
+                <form action="/<%= role %>/article/<%= userId %>">
                 <input type="text" name="search" placeholder="Search..">
-                <input type="submit" value="search">
-                <a class="btn btn-primary mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">Clear search</a>
-            </form>
+                <a class="btn btn-success " type="submit" value="search" role="button" style="color: white">search</a>
+                <a class="btn btn-dark mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">Clear search</a>
+                </form>
+            </div>
 
             <a class="btn btn-primary " href="/<%= role %>/add/article/<%= userId %>" role="button">Add</a>
             <a class="btn btn-warning mt-4 mb-4" href="/<%= role %>/article/<%= userId %>" role="button">All Article</a>

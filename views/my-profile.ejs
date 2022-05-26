@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head'); %>
+    <title>Detail Articles</title>
+    <style>
+        #image {
+            background: url('image.jpg') no-repeat;
+            background-size:contain;
+        }
+    </style>
+</head>
+<body>
+    <% if (result.length == 0) { %>
+        <h1>Data Anda Belum Ditambahkan</h1>
+        <a href="/<%= role %>/profile/<%= userId %>/add">
+            <input type="submit" value="Add" class="btn btn-primary">
+        </a>
+    <% } %>
+    <% const {photo, address, jabatan, numberPhone, UserId} = result%> 
+    <div class="container px-4 mt-4 text-center">
+        <h1 class="mb-4"><%= title %></h1>
+        <div class="mb-4">
+            <p>Created By <%= result.User.userName %></p>
+        </div>
+        <div>
+            <img src="<%= photo %>" alt="img" id="image">
+        </div>
+        <p class="mt-4"><%= address %></p>
+        <h5><%= jabatan %></h5>
+        <p><%= numberPhone %></p>
+
+        <div class="mb-4">
+            <a href="/<%= role %>/profile/<%= userId %>/edit">
+                <input type="submit" value="Edit" class="btn btn-success">
+            </a>
+            <a href="/<%= role %>/profile/<%= userId %>/delete">
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

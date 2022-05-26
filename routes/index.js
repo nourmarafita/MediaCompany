@@ -62,4 +62,7 @@ router.get('/:role/article/:userId/:postId/reject', Controller.rejectStatusArtic
 router.get('/:role/article/:userId/:postId/approve', Controller.approveStatusArticle) //admin
 
 
+
+
+
 module.exports = router
